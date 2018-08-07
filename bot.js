@@ -47,37 +47,37 @@ client.on('message', message => {
         },
         {
           "name": "Побед:",
-          "value": "4",
+          "value": users[message.author.id].victory,
           "inline": true
         },
         {
           "name": "Побед в команде:",
-          "value": "6",
+          "value": users[message.author.id].team_victory,
           "inline": true
         },
         {
           "name": "Турниров:",
-          "value": "20",
+          "value": users[message.author.id].tournament_count,
           "inline": true
         },
         {
           "name": "Рекорд круга",
-          "value": "1",
+          "value": users[message.author.id].lap_record,
           "inline": true
         },
         {
           "name": "Личный зачет:",
-          "value": "??: 5   ??: 2   ??: 3",
+          "value": users[message.author.id].personal_score,
           "inline": true
         },
         {
           "name": "Командный зачет:",
-          "value": "??: 1     ??: 2     ??: 3",
+          "value": users[message.author.id].team_score,
           "inline": true
         },
         {
           "name": "Достижения:",
-          "value": "1-ое место лояльности в Season #1 2-ое место успешности в Season #1",
+          "value": users[message.author.id].achievements,
           "inline": true
         }
       ]
