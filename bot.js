@@ -8,6 +8,7 @@ const Discord = require('discord.js');
 // Create an instance of a Discord client
 const client = new Discord.Client();
 const config = require("./config.json");
+const users = require("./users.json");
 
 // The ready event is vital, it means that your bot will only start reacting to information
 // from Discord _after_ ready is emitted
@@ -15,18 +16,21 @@ client.on('ready', () => {
   console.log('I am ready!');
 });
 
+const prefix = "!";
+
 // Create an event listener for messages
 client.on('message', message => {
   // If the message is "what is my avatar"
-  if (message.content === 'me') {
+  if (message.content === prefix + 'me') {
+
     // Send the user's avatar URL
     message.channel.send({embed: {
       "url": "https://discordapp.com",
       "color": 6794509,
-      "description": "????????????????????",
+      "description": "Позиция в чемпионате",
       timestamp: new Date(),
       "footer": {
-        "text": "PCars2 on MARS"
+        "text": "Project Cars 2 on MARS"
       },
       "thumbnail": {
         icon_url: message.author.displayAvatarURL,
@@ -38,8 +42,8 @@ client.on('message', message => {
       },
       "fields": [
         {
-          "name": "Уровень: ``ПРОФЕССИОНАЛ``",
-          "value": "-"
+          "name": "Уровень:",
+          "value": users[message.author.id].level,
         },
         {
           "name": "Побед:",
@@ -73,11 +77,11 @@ client.on('message', message => {
         },
         {
           "name": "Достижения:",
-          "value": "```1-ое место лояльности в Season #1``````2-ое место успешности в Season #1```",
+          "value": "1-ое место лояльности в Season #1 2-ое место успешности в Season #1",
           "inline": true
         }
       ]
-    }});
+    }}); 
   }
 });
 
