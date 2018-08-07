@@ -1,6 +1,4 @@
-/*
-  A bot that welcomes new guild members when they join
-*/
+// Bot for reply PCars2 stats for player
 
 // Import the discord.js module
 const Discord = require('discord.js');
@@ -20,10 +18,8 @@ const prefix = "!";
 
 // Create an event listener for messages
 client.on('message', message => {
-  // If the message is "what is my avatar"
   if (message.content === prefix + 'me') {
 
-    // Send the user's avatar URL
     message.channel.send({embed: {
       "url": "https://discordapp.com",
       "color": 6794509,
@@ -81,8 +77,11 @@ client.on('message', message => {
           "inline": true
         }
       ]
-    }}); 
+    }}).catch((ex)=>{
+    msg.reply("Failed to parse request! " + ex);
+    });
   }
+
 });
 
 // Log our bot in
