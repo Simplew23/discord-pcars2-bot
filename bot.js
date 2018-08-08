@@ -22,7 +22,7 @@ client.on('message', message => {
   if (message.content === prefix + 'me') {
 
     try {
-      var obj = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
+      var users = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
       message.channel.send({embed: {
       "url": "https://discordapp.com",
       "color": 6794509,
@@ -42,41 +42,41 @@ client.on('message', message => {
       "fields": [
         {
           "name": "Уровень:",
-          "value": obj[message.author.id].level,
+          "value": users[message.author.id].level,
         },
         {
           "name": "Побед:",
-          "value": obj[message.author.id].victory,
+          "value": users[message.author.id].victory,
           "inline": true
         },
         {
           "name": "Побед в команде:",
-          "value": obj[message.author.id].team_victory,
+          "value": users[message.author.id].team_victory,
           "inline": true
         },
         {
           "name": "Турниров:",
-          "value": obj[message.author.id].tournament_count,
+          "value": users[message.author.id].tournament_count,
           "inline": true
         },
         {
           "name": "Рекорд круга",
-          "value": obj[message.author.id].lap_record,
+          "value": users[message.author.id].lap_record,
           "inline": true
         },
         {
           "name": "Личный зачет:",
-          "value": obj[message.author.id].personal_score,
+          "value": users[message.author.id].personal_score,
           "inline": true
         },
         {
           "name": "Командный зачет:",
-          "value": obj[message.author.id].team_score,
+          "value": users[message.author.id].team_score,
           "inline": true
         },
         {
           "name": "Достижения:",
-          "value": obj[message.author.id].achievements,
+          "value": users[message.author.id].achievements,
           "inline": true
         }
       ]
