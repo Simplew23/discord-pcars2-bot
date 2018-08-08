@@ -20,7 +20,8 @@ const prefix = "!";
 client.on('message', message => {
   if (message.content === prefix + 'me') {
 
-    message.channel.send({embed: {
+    try {
+      message.channel.send({embed: {
       "url": "https://discordapp.com",
       "color": 6794509,
       "description": "Позиция в чемпионате",
@@ -77,11 +78,11 @@ client.on('message', message => {
           "inline": true
         }
       ]
-    }}).catch((ex)=>{
-    msg.reply("Failed to parse request! " + ex);
-    });
+    }})} catch (err) {
+      message.channel.send("Прости, но ты еще не участвовал в турнирах. Но можешь принять, ближайший турнир смотри в #standigs");
+      return
+    };
   }
-
 });
 
 // Log our bot in
