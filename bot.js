@@ -6,7 +6,8 @@ const Discord = require('discord.js');
 // Create an instance of a Discord client
 const client = new Discord.Client();
 const config = require("./config.json");
-const users = require("./users.json");
+
+var fs = require('fs');
 
 // The ready event is vital, it means that your bot will only start reacting to information
 // from Discord _after_ ready is emitted
@@ -21,6 +22,7 @@ client.on('message', message => {
   if (message.content === prefix + 'me') {
 
     try {
+      var obj = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
       message.channel.send({embed: {
       "url": "https://discordapp.com",
       "color": 6794509,
@@ -40,41 +42,41 @@ client.on('message', message => {
       "fields": [
         {
           "name": "Уровень:",
-          "value": users[message.author.id].level,
+          "value": obj[message.author.id].level,
         },
         {
           "name": "Побед:",
-          "value": users[message.author.id].victory,
+          "value": obj[message.author.id].victory,
           "inline": true
         },
         {
           "name": "Побед в команде:",
-          "value": users[message.author.id].team_victory,
+          "value": obj[message.author.id].team_victory,
           "inline": true
         },
         {
           "name": "Турниров:",
-          "value": users[message.author.id].tournament_count,
+          "value": obj[message.author.id].tournament_count,
           "inline": true
         },
         {
           "name": "Рекорд круга",
-          "value": users[message.author.id].lap_record,
+          "value": obj[message.author.id].lap_record,
           "inline": true
         },
         {
           "name": "Личный зачет:",
-          "value": users[message.author.id].personal_score,
+          "value": obj[message.author.id].personal_score,
           "inline": true
         },
         {
           "name": "Командный зачет:",
-          "value": users[message.author.id].team_score,
+          "value": obj[message.author.id].team_score,
           "inline": true
         },
         {
           "name": "Достижения:",
-          "value": users[message.author.id].achievements,
+          "value": obj[message.author.id].achievements,
           "inline": true
         }
       ]
